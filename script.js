@@ -27,7 +27,7 @@ function addGlobalEventListener (type, selector, callback) {
 
 
 
-toggle.addEventListener("click", toggleHandler)
+addGlobalEventListener("click", "darkmode-toggle",toggleHandler)
 addGlobalEventListener("click", ".select", colorPicker)
 addGlobalEventListener("click", ".add-btn", addHandler)
 addGlobalEventListener("click", ".remove-btn", removeHandler)
