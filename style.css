@@ -185,15 +185,30 @@ h1 {
 }
 
 .filter-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12.5%;
+    height: 50%;
     padding: 5px;
-    border: 1px solid var(--secondary-color);
     cursor: pointer;
 }
 
-.filter-color {
-    height: 10%;
-    aspect-ratio: 5/1;
+.filter-btn > div {
+    height: calc(100% - 3px);
+    width: calc(100% - 3px);
+    text-align: center;
+    border: none;
+}
+
+.filter-btn > .filter-color {
     border: 1px solid var(--primary-color);
+}
+
+.selected {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 5px;
 }
 
 .tomato {

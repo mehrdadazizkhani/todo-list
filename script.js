@@ -5,9 +5,11 @@ const input = document.querySelector('.input > input')
 const cards = document.querySelector('.cards-section')
 const colors = document.querySelector('.colors')
 const selectColors = document.querySelector('.colors-select')
+const filterBtn = document.querySelectorAll('.filter-btn > div')
 
 let isDarkMode = false
 let selectedColor = "tomato-label"
+let condition = "All"
 
 selectColors.classList.add("hide")
 
@@ -16,6 +18,9 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
     switchColors()
 }
 
+filterBtn.forEach(element => {
+    element.addEventListener("click", filterBtnHandler)
+})
 
 function addGlobalEventListener (type, selector, callback) {
     document.addEventListener(type, event => {
@@ -32,7 +37,6 @@ addGlobalEventListener("click", ".add-btn", addHandler)
 addGlobalEventListener("click", ".remove-btn", removeHandler)
 addGlobalEventListener("click", ".status", statusHandler)
 addGlobalEventListener("click", ".colors", colorHandler)
-addGlobalEventListener("click", ".filter-btn", filterHandler)
 
 function toggleHandler() {
     isDarkMode = !isDarkMode
@@ -61,6 +65,7 @@ function statusHandler (event) {
         event.target.textContent = "finished"
         event.target.style.backgroundColor = "tomato"
     }
+    filterHandler()
 }
 
 function removeHandler (event) {
@@ -89,23 +94,34 @@ function addHandler () {
     `
     cards.appendChild(card)
     input.value = ""}
+
+    filterHandler()
 }
 
 function colorHandler () {
     selectColors.classList.remove("hide")
 }
 
-function filterHandler (event) {
-    const card = Array.prototype.slice.call(document.querySelectorAll(".card"))
-    card.forEach(element => {
-        
-        let condition = event.target.classList[0]
-        if (condition == "todo") {
-            condition = "to do"
-        } else if (condition != "pending" && condition != "finished" && condition != "All") {
-            condition += "-label"
-        }
+function filterBtnHandler (event) {
+    filterBtn.forEach(element => {
+        element.parentElement.classList.remove("selected")
+        event.target.parentElement.classList.add("selected")
+    })
 
+    condition = event.target.classList[0] 
+    
+    if (condition == "todo") {
+        condition = "to do"
+    } else if (condition != "pending" && condition != "finished" && condition != "All") {
+        condition += "-label"
+    }
+
+    filterHandler()
+}
+
+function filterHandler () {
+    const card = Array.prototype.slice.call(document.querySelectorAll(".card"))
+    card.forEach(element => {    
         if (condition != "All") {
             if (element.children[1].children[0].textContent == condition || element.classList[1] == condition) {
                 element.classList.remove("hide")
