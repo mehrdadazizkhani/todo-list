@@ -301,7 +301,7 @@ h1 {
 }
 
 .remove-btn:hover {
-    background-color: red;
+    opacity: 0.8;
 }
 
 .footer-section {
