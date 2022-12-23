@@ -195,6 +195,9 @@ h1 {
 }
 
 .filter-btn > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: calc(100% - 3px);
     width: calc(100% - 3px);
     text-align: center;
@@ -352,7 +355,7 @@ h1 {
     }
 
     .inputs {
-        height: 35px;
+        height: 40px;
         padding: 0 10px;
         width: calc(100% - 22px);
     }
@@ -375,11 +378,12 @@ h1 {
 
     .input-section {
         flex-direction: column;
-        height: 80px;
+        height: fit-content;
     }
 
     .filters {
         font-size: 1.2rem;
+        height: 40px;
     }
 
     .filter-color {

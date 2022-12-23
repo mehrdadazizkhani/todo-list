@@ -94,7 +94,7 @@ function addHandler () {
     `
     cards.appendChild(card)
     input.value = ""}
-
+    input.focus()
     filterHandler()
 }
 
